@@ -8,7 +8,7 @@ import {
   Image,
 } from "react-native";
 
-export default function MapScreen() {
+export default function MapScreen({navigation}){
   return (
     <View style={styles.container}>
       {/* Header */}
@@ -57,9 +57,18 @@ export default function MapScreen() {
         <Text style={styles.sectionTitle}>Frequently Visited</Text>
 
         <View style={styles.cardRow}>
-          <View style={styles.card}>
+          <TouchableOpacity
+            style={styles.card}
+            onPress={() =>
+                navigation.navigate("LocationDetails", {
+                officeName: "Office of the University Registrar",
+                })
+            }
+            >
             <Text>Registrar’s Office</Text>
-          </View>
+            </TouchableOpacity>
+
+
           <View style={styles.card}>
             <Text>CITC Building</Text>
           </View>
@@ -69,9 +78,17 @@ export default function MapScreen() {
           <View style={styles.card}>
             <Text>Ms. Reyes</Text>
           </View>
-          <View style={styles.card}>
+          <TouchableOpacity
+            style={styles.card}
+            onPress={() =>
+                navigation.navigate("OfficeDetails", {
+                officeName: "Gymnasium",
+                })
+            }
+            >
             <Text>Gymnasium</Text>
-          </View>
+            </TouchableOpacity>
+
         </View>
       </View>
     </View>
