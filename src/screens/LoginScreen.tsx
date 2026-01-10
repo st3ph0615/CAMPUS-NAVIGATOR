@@ -55,7 +55,7 @@ export default function LoginScreen({ navigation }: Props) {
         />
 
         {/* Login Button */}
-        <TouchableOpacity style={styles.loginButton}>
+        <TouchableOpacity style={styles.loginButton} onPress={() => navigation.replace("MainTabs")}>
           <Text style={styles.loginText}>Log In</Text>
         </TouchableOpacity>
 
