@@ -12,9 +12,10 @@ type Props = {
   navigation: any;
 };
 
-export default function LoginScreen({ navigation }: Props) {
-  const [studentId, setStudentId] = useState("");
+export default function SignupScreen({ navigation }: Props) {
+  const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   return (
     <View style={styles.container}>
@@ -27,60 +28,54 @@ export default function LoginScreen({ navigation }: Props) {
         />
 
         <View style={styles.headerOverlay}>
-          <Text style={styles.title}>Sign In</Text>
-          <Text style={styles.subtitle}>Access your campus services</Text>
+          <Text style={styles.title}>Sign Up</Text>
+          <Text style={styles.subtitle}>Create your campus account</Text>
         </View>
       </View>
 
       {/* Form */}
       <View style={styles.form}>
-        {/* Student ID */}
-        <Text style={styles.label}>Student ID</Text>
+        {/* Email / Student ID */}
+        <Text style={styles.label}>Email or Student ID</Text>
         <TextInput
           style={styles.input}
-          placeholder="Type your student ID number"
-          value={studentId}
-          onChangeText={setStudentId}
-          keyboardType="numeric"
+          placeholder="Type your email or student ID number"
+          value={identifier}
+          onChangeText={setIdentifier}
+          keyboardType="email-address"
+          autoCapitalize="none"
         />
 
         {/* Password */}
         <Text style={styles.label}>Password</Text>
         <TextInput
           style={styles.input}
-          placeholder="Type your password"
+          placeholder="Create a secure password"
           secureTextEntry
           value={password}
           onChangeText={setPassword}
         />
 
-        {/* Login Button */}
-        <TouchableOpacity style={styles.loginButton}>
-          <Text style={styles.loginText}>Log In</Text>
+        {/* Confirm Password */}
+        <Text style={styles.label}>Re-enter Password</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Confirm your password"
+          secureTextEntry
+          value={confirmPassword}
+          onChangeText={setConfirmPassword}
+        />
+
+        {/* Create Account Button */}
+        <TouchableOpacity style={styles.createButton}>
+          <Text style={styles.createText}>Create Account</Text>
         </TouchableOpacity>
 
-        {/* Forgot Password */}
-        <TouchableOpacity>
-          <Text style={styles.forgotText}>Forgot Password?</Text>
-        </TouchableOpacity>
-
-        {/* Divider */}
-        <Text style={styles.orText}>or</Text>
-
-        {/* Google Sign In */}
-        <TouchableOpacity style={styles.socialButton}>
-          <Image
-            source={require("../assets/google-icon.png")} // add a google icon
-            style={styles.socialIcon}
-          />
-          <Text style={styles.socialText}>Sign In with Email</Text>
-        </TouchableOpacity>
-
-        {/* Sign Up */}
-        <View style={styles.signupRow}>
-          <Text style={styles.signupText}>Don't have an account?</Text>
-          <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
-            <Text style={styles.signupLink}> Sign Up</Text>
+        {/* Already Have Account */}
+        <View style={styles.loginRow}>
+          <Text style={styles.loginText}>Already have an account?</Text>
+          <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+            <Text style={styles.loginLink}> Sign In</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -145,7 +140,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
 
-  loginButton: {
+  createButton: {
     backgroundColor: "#0A2F6B",
     paddingVertical: 14,
     borderRadius: 12,
@@ -153,58 +148,24 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
 
-  loginText: {
+  createText: {
     color: "#FFFFFF",
     fontSize: 16,
     fontWeight: "600",
   },
 
-  forgotText: {
-    textAlign: "center",
-    marginTop: 12,
-    color: "#0A2F6B",
-    fontSize: 13,
-  },
-
-  orText: {
-    textAlign: "center",
-    marginVertical: 20,
-    color: "#888",
-  },
-
-  socialButton: {
-    flexDirection: "row",
-    borderWidth: 1,
-    borderColor: "#DDD",
-    borderRadius: 12,
-    paddingVertical: 12,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-
-  socialIcon: {
-    width: 20,
-    height: 20,
-    marginRight: 8,
-  },
-
-  socialText: {
-    fontSize: 14,
-    color: "#333",
-  },
-
-  signupRow: {
+  loginRow: {
     flexDirection: "row",
     justifyContent: "center",
     marginTop: 20,
   },
 
-  signupText: {
+  loginText: {
     fontSize: 13,
     color: "#333",
   },
 
-  signupLink: {
+  loginLink: {
     fontSize: 13,
     color: "#0A2F6B",
     fontWeight: "600",
