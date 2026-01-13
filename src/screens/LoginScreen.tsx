@@ -12,6 +12,7 @@ import {
   Platform,
   ScrollView,
 } from "react-native";
+import MapScreen from "./MapScreen";
 
 type Props = {
   navigation: any;
@@ -73,7 +74,7 @@ export default function LoginScreen({ navigation }: Props) {
               onChangeText={setPassword}
             />
 
-            <TouchableOpacity style={styles.loginButton} activeOpacity={0.85} onPress={onLogin}>
+            <TouchableOpacity style={styles.loginButton} activeOpacity={0.85} onPress={() => navigation.navigate("MainTabs")}>
               <Text style={styles.loginText}>Log In</Text>
             </TouchableOpacity>
 
