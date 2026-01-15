@@ -12,13 +12,16 @@ import {
   Platform,
   ScrollView,
 } from "react-native";
-import MapScreen from "./MapScreen";
+import { useAuth } from "../navigation/AuthContext";
+
+
 
 type Props = {
   navigation: any;
 };
 
 export default function LoginScreen({ navigation }: Props) {
+  const { signIn } = useAuth();
   const [studentId, setStudentId] = useState("");
   const [password, setPassword] = useState("");
 
@@ -74,9 +77,9 @@ export default function LoginScreen({ navigation }: Props) {
               onChangeText={setPassword}
             />
 
-            <TouchableOpacity style={styles.loginButton} activeOpacity={0.85} onPress={() => navigation.navigate("MainTabs")}>
-              <Text style={styles.loginText}>Log In</Text>
-            </TouchableOpacity>
+            <TouchableOpacity style={styles.loginButton} onPress={signIn}>
+            <Text style={styles.loginText}>Log In</Text>
+          </TouchableOpacity>
 
             <TouchableOpacity activeOpacity={0.7} style={styles.centerLink}>
               <Text style={styles.forgotText}>Forgot Password?</Text>
